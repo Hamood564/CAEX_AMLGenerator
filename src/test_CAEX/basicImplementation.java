@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-
+import java.util.UUID;
 
 import de.dke.caex.AttributeType;
 import de.dke.caex.CAEXBasicObject.*;
@@ -13,10 +13,16 @@ import de.dke.caex.CAEXFile.InstanceHierarchy;
 import de.dke.caex.CAEXFile.InterfaceClassLib;
 import de.dke.caex.CAEXFile.RoleClassLib;
 import de.dke.caex.CAEXFile.SystemUnitClassLib;
+import de.dke.caex.InterfaceClassType;
+import de.dke.caex.InterfaceFamilyType;
 import de.dke.caex.InternalElementType;
 import de.dke.caex.InternalElementType.RoleRequirements;
 import de.dke.caex.RoleClassType;
 import de.dke.caex.RoleFamilyType;
+import de.dke.caex.SystemUnitClassType;
+import de.dke.caex.SystemUnitClassType.InternalLink;
+import de.dke.caex.SystemUnitClassType.SupportedRoleClass;
+import de.dke.caex.SystemUnitFamilyType;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
@@ -55,6 +61,9 @@ public class basicImplementation {
 		Description description_attribute5_sub2= new Description();
 		Description description_attribute6= new Description();
 		Description description_attribute7= new Description();
+		Description desc_sysunit = new Description();
+		Description desc_hierarchy = new Description();
+		Description description_interfaceclass2 = new Description();
 		
 		
 		//instantiate roletype objects///////////////////////////////////////////////
@@ -70,13 +79,35 @@ public class basicImplementation {
 		
 		//set instance hierarchy///////////////////////////////////////////////////////
 		List<InstanceHierarchy>instanceHierarchies = new LinkedList<>();
+		
 		InstanceHierarchy instanceHierarchy1 = new InstanceHierarchy();
 		instanceHierarchy1.setName("AssetAdministrationShellInstanceHierarchy");
 		version.setValue("0");
 		instanceHierarchy1.setVersion(version);
+		
+		InternalElementType InternalElement = new InternalElementType();
+		InternalElement.setName("MALTAssetAdministrationShell");
+		InternalElement.setID(UUID.randomUUID().toString());
+		
+		AttributeType attribute_instance = new AttributeType();
+		attribute_instance.setName("identification");
+		AttributeType.RefSemantic attributeRef_i = new AttributeType.RefSemantic();
+		attributeRef_i.setCorrespondingAttributePath("AAS:Identifiable/identification");
+		attribute_instance.getRefSemantic().add(attributeRef_i);
+		attribute_instance.setValue("");
+		RoleRequirements role = new RoleRequirements();
+		role.setRefBaseRoleClassPath("AssetAdministrationShellRoleClassLib/Asset");
+		InternalElement.getRoleRequirements().add(role);
+		InternalLink Internal = new InternalLink();
+		Internal.setName("InternalLink");
+		Internal.setRefPartnerSideA("1");
+		Internal.setRefPartnerSideB("2");
+		
+		InternalElement.getInternalLink().add(Internal);
+		InternalElement.getAttribute().add(attribute_instance) ;
+		instanceHierarchy1.getInternalElement().add(InternalElement);
 		instanceHierarchies.add(instanceHierarchy1);
-		
-		
+		 
 		
 		
 		//set interface class libraries/////////////////////////////////////////////////
@@ -87,8 +118,24 @@ public class basicImplementation {
 		interfaceClassLib1.setDescription(description_interfaceclass);
 		version.setValue("1.0.0");
 		interfaceClassLib1.setVersion(version);
-		interfaceClassLibraries.add(interfaceClassLib1);
 		
+		
+		InterfaceClassType InterfaceClass = new InterfaceClassType();
+		InterfaceClass.setName("FileDataReference");
+		InterfaceClass.setRefBaseClassPath("AutomationMLBPRInterfaceClassLib/ExternalDataReference");
+		description_interfaceclass2.setValue("A FileDataReference represents the address to a File. FileDataReference is derived from the AutomationML Interface Class ExternalDataReference that is defined in AutomationML BPR_005E_ExternalDataReference_v1.0.0_2:The interface class “ExternalDataReference” shall be used in order to reference external documents out of the scope of AutomationML.\r\n"
+				+ "");
+		
+		
+		InterfaceFamilyType InterfaceFamily = new InterfaceFamilyType();
+		InterfaceFamily.setName("FileDataReference");
+		InterfaceFamily.setRefBaseClassPath("AutomationMLBPRInterfaceClassLib/ExternalDataReference");
+		description_interfaceclass2.setValue("A FileDataReference represents the address to a File. FileDataReference is derived from the AutomationML Interface Class ExternalDataReference that is defined in AutomationML BPR_005E_ExternalDataReference_v1.0.0_2:The interface class “ExternalDataReference” shall be used in order to reference external documents out of the scope of AutomationML.\r\n"
+				+ "");
+		InterfaceFamily.setDescription(description_interfaceclass2);
+		
+		interfaceClassLib1.getInterfaceClass().add(InterfaceFamily);
+		interfaceClassLibraries.add(interfaceClassLib1);
 		
 		//set role class libraries////////////////////////////////////////////////////////
 		List<RoleClassLib>roleClassLibraries = new LinkedList<>();
@@ -114,7 +161,7 @@ public class basicImplementation {
 		attributeRef.setCorrespondingAttributePath("AAS:Referable/idShort");
 		attributeType1.getRefSemantic().add(attributeRef);
 		
-		
+		attribute_instance.getAttribute().add(attributeType1);
 		
 		AttributeType attributeType2 = new AttributeType();
 		attributeType2.setAttributeDataType("xs:string");
@@ -261,6 +308,8 @@ public class basicImplementation {
 		
 		
 		
+		
+		
 		roleFamilyTypes.add(roleFamilyType1);
 
 		roleClassLib1.getRoleClass().addAll(roleFamilyTypes);
@@ -272,10 +321,58 @@ public class basicImplementation {
 		
 		//set system unit class libraries
 		List<SystemUnitClassLib>systemUnitClassLibraries = new LinkedList<>();
+		List<SystemUnitClassType> systemUnitClasses = new LinkedList<>();
 		SystemUnitClassLib systemunitClassLib1 = new SystemUnitClassLib();
 		systemunitClassLib1.setName("AssetAdministrationShellSystemUnitClasses");
 		systemunitClassLib1.setVersion(version);
+		
+		
+		SystemUnitClassLib systemunitClassLib2 = new SystemUnitClassLib();
+		systemunitClassLib2.setName("AssetAdministrationShellDataSpecificationTemplates");
+		systemunitClassLib2.setVersion(version);
+		
+		SystemUnitClassType systemUnitClass= new SystemUnitClassType();
+		systemUnitClass.setName("DataSpecificationIEC61360Template");
+		systemUnitClass.setID("572c0568-4019-40ec-bfc4-a3a82dc6eed4");
+		
+		
+		SystemUnitFamilyType systemUnitFamily = new SystemUnitFamilyType();
+		systemUnitFamily.setName("DataSpecificationIEC61360Template");
+		systemUnitFamily.setID("572c0568-4019-40ec-bfc4-a3a82dc6eed4");
+		desc_sysunit.setValue("An AAS Data Specification template for IEC61369. A template consists of the DataSpecificationContent containing the additional attributes to be added to the element instance that references the data specification template and meta information about the template itself (this is why DataSpecification inherits from Identifiable). In UML these are two separated classes.");
+		systemUnitFamily.setDescription(desc_sysunit);
+		
+		AttributeType attributeSys_1 = new AttributeType();
+		attributeSys_1.setName("idShort");
+		attributeSys_1.setAttributeDataType("xs:string");
+		attributeSys_1.setDescription(desc_sysunit);
+		attributeSys_1.setValue("");
+		AttributeType.RefSemantic attributesys_ref1 = new AttributeType.RefSemantic();
+		attributesys_ref1.setCorrespondingAttributePath("AAS:Referable/idShort");
+		attributeSys_1.getRefSemantic().add(attributesys_ref1);
+		
+		AttributeType attributeSys_2 = new AttributeType();
+		attributeSys_2.setName("idShort");
+		attributeSys_2.setAttributeDataType("xs:string");
+		attributeSys_2.setDescription(desc_sysunit);
+		attributeSys_2.setValue("");
+		attributeSys_1.getAttribute().add(attributeSys_2);
+		
+		SupportedRoleClass supprole1= new SupportedRoleClass();
+		supprole1.setRefRoleClassPath("AssetAdministrationShellRoleClassLib/DataSpecification");
+		
+		systemUnitFamily.getSupportedRoleClass().add(supprole1);
+		systemUnitFamily.getAttribute().add(attributeSys_1);
+		
+		
+		SystemUnitFamilyType systemUnitFamily2 = new SystemUnitFamilyType();
+		systemUnitFamily2.setName("DataSpecificationIEC61360");
+		systemUnitFamily.getSystemUnitClass().add(systemUnitFamily2);
+		
+		
+		systemunitClassLib2.getSystemUnitClass().add(systemUnitFamily);
 		systemUnitClassLibraries.add(systemunitClassLib1);
+		systemUnitClassLibraries.add(systemunitClassLib2);
 		
 		
 		
