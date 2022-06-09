@@ -55,9 +55,15 @@ public class InstanceHierarchyElements {
 	public static AttributeType setIEAttributeBuild (String Name, String DataType, String Value, Description description, String AttributePath) {
 		AttributeType attributeType = new AttributeType();
 		attributeType.setName(Name);
-		attributeType.setAttributeDataType(DataType);
-		attributeType.setValue(Value);
-		attributeType.setDescription(description);
+		if(DataType != null) {
+			attributeType.setAttributeDataType(DataType);
+		}
+		if(Value != null) {
+			attributeType.setValue(Value);
+		}
+		if(description != null) {
+			attributeType.setDescription(description);
+		}
 		if(AttributePath != null) {
 			AttributeType.RefSemantic attributeRef = new AttributeType.RefSemantic();
 			attributeRef.setCorrespondingAttributePath(AttributePath);
@@ -118,6 +124,11 @@ public class InstanceHierarchyElements {
 	public static InternalElementType AssignInternalLink (InternalElementType internalElement, InternalLink internalLink) {
 		internalElement.getInternalLink().add(internalLink);
 		return internalElement;		
+	}
+	
+	public static InternalElementType setIElink (InternalElementType internalElementA, InternalElementType internalElementB) {
+		internalElementA.getInternalElement().add(internalElementB);
+		return internalElementA;
 	}
 	public static InstanceHierarchy AssignInternalElements (InstanceHierarchy instanceHierarchy,InternalElementType internalElement) {
 		instanceHierarchy.getInternalElement().add(internalElement);

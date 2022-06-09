@@ -1,5 +1,6 @@
 package Utilities;
 
+import java.io.File;
 import java.util.List;
 
 import javax.xml.transform.Result;
@@ -51,18 +52,26 @@ public class FileObject {
 		
 	}
 	
-	public static void writeFileObjectOutput (Result Output) throws JAXBException {
+	public static void writeFileObjectOutput (CAEXFile fileObject,JAXBContext context) throws JAXBException {
 		
 		//Final Marshal to XML file Object--Keep at last
 		Marshaller marshaller = context.createMarshaller();
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		if (Output != null ) {
-			marshaller.marshal(fileObject, Output); //write to output
-		}
-		else {
+//		if (Output != null ) {
+//			marshaller.marshal(fileObject, Output); //write to output
+//		}
+//		else {
 			marshaller.marshal(fileObject, System.out);
-		}
+//		}
 		
+		
+	}
+	
+	public static void writeOutputtoFile (CAEXFile fileObject,JAXBContext context,String FIlename) throws JAXBException {
+		Marshaller marshaller = context.createMarshaller();
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		File file = new File(FIlename);
+		marshaller.marshal(fileObject, file);
 		
 	}
 }

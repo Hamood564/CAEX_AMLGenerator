@@ -2,6 +2,7 @@ package Utilities;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 import de.dke.caex.AttributeType;
 import de.dke.caex.RoleFamilyType;
@@ -10,15 +11,20 @@ import de.dke.caex.CAEXBasicObject.Description;
 import de.dke.caex.CAEXBasicObject.Version;
 import de.dke.caex.CAEXFile.RoleClassLib;
 import de.dke.caex.CAEXFile.SystemUnitClassLib;
+import de.dke.caex.SystemUnitClassType.SupportedRoleClass;
 
 public class SystemUnitClass {
 	public static SystemUnitClassLib settingSystemUnitClassLib(String Name, String Value, Description description, String Version, List<SystemUnitFamilyType> SystemUnitFamily ) {
 		SystemUnitClassLib systemunitClassLib = new SystemUnitClassLib();
 		systemunitClassLib.setName(Name);
-		systemunitClassLib.setDescription(description);
-		Version version = new Version();
-		version.setValue(Version);
-		systemunitClassLib.setVersion(version);
+		if (description != null) {
+			systemunitClassLib.setDescription(description);
+		}
+		if (Version != null) {
+			Version version = new Version();
+			version.setValue(Version);
+			systemunitClassLib.setVersion(version);
+		}	
 		if (SystemUnitFamily != null) {
 			systemunitClassLib.getSystemUnitClass().addAll(SystemUnitFamily);
 		}
@@ -28,9 +34,16 @@ public class SystemUnitClass {
 	public static AttributeType setSystemUnitAttribute (String Name, String DataType, String Value, Description description, String AttributePath) {
 		AttributeType attributeType = new AttributeType();
 		attributeType.setName(Name);
-		attributeType.setAttributeDataType(DataType);
-		attributeType.setValue(Value);
-		attributeType.setDescription(description);
+		if (DataType != null) {
+			attributeType.setAttributeDataType(DataType);
+		}
+		if (Value != null) {
+			attributeType.setValue(Value);
+		}
+		if(description != null) {
+			attributeType.setDescription(description);
+		}
+		
 		if(AttributePath != null) {
 			AttributeType.RefSemantic attributeRef = new AttributeType.RefSemantic();
 			attributeRef.setCorrespondingAttributePath(AttributePath);
@@ -76,7 +89,11 @@ public class SystemUnitClass {
 	
 	public static SystemUnitFamilyType setSystemUnitFamily (String Name, String ClassPath, Description description, List<AttributeType> attributeTypes) {
 		SystemUnitFamilyType systemFamily = new SystemUnitFamilyType();
+		SupportedRoleClass supprole1= new SupportedRoleClass();
 		systemFamily.setName(Name);
+		systemFamily.setID(UUID.randomUUID().toString());
+		supprole1.setRefRoleClassPath(ClassPath);
+		systemFamily.getSupportedRoleClass().add(supprole1);
 		systemFamily.setRefBaseClassPath(ClassPath);
 		systemFamily.setDescription(description);
 		if (attributeTypes != null) {
