@@ -3,9 +3,9 @@
     <AdditionalInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CAEXBasicObject">
         <AdditionalInformation xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">AutomationMLVersion:2.0</AdditionalInformation>
     </AdditionalInformation>
-    <InstanceHierarchy Name="Test2">
+    <InstanceHierarchy Name="AssetAdministrationShellInstanceHierarchy">
         <Version>0</Version>
-        <InternalElement ID="4c0f96a1-6724-405f-ae4c-bb9cf5246280" Name="MALTAssetAdministrationShell">
+        <InternalElement ID="cdd4827e-04af-44f3-ae64-012cac60984a" Name="MALTAssetAdministrationShell">
             <Attribute Name="identification">
                 <RefSemantic CorrespondingAttributePath="AAS:Identifiable/identification"/>
                 <Attribute Name="idType">
@@ -35,7 +35,7 @@
                     <Value>MALT AAS for representing MALT System</Value>
                 </Attribute>
             </Attribute>
-            <InternalElement ID="2476ad7f-422b-44fa-ae58-12fc26212810" Name="MALT">
+            <InternalElement ID="9e6c4ec9-b4d3-43ba-98f1-add05fb09209" Name="MALT">
                 <Attribute Name="description">
                     <Value>MALT asset for demo</Value>
                     <RefSemantic CorrespondingAttributePath="AAS:Referable/description"/>
@@ -66,7 +66,7 @@
                 </Attribute>
                 <RoleRequirements RefBaseRoleClassPath="AssetAdministrationShellRoleClassLib/Asset"/>
             </InternalElement>
-            <InternalElement ID="00fd567a-2a33-4369-8637-c03ca24e6c8d" Name="Skill">
+            <InternalElement ID="4acda5bb-8ec6-4c52-9b01-a0c16246e148" Name="Skill">
                 <Attribute Name="identification">
                     <RefSemantic CorrespondingAttributePath="AAS:Identifiable/identification"/>
                     <Attribute Name="idType">
@@ -86,7 +86,7 @@
                     <Value>Instance</Value>
                     <RefSemantic CorrespondingAttributePath="AAS:HasKind/kind"/>
                 </Attribute>
-                <InternalElement ID="ea4ee608-6a0c-4f6e-b003-48fee908163d" Name="APICalls">
+                <InternalElement ID="b5f79cf3-0c06-47c2-8360-8f245b105f01" Name="APICalls">
                     <Attribute Name="idShort">
                         <Value>APICalls</Value>
                         <RefSemantic CorrespondingAttributePath="AAS:Referable/idShort"/>
@@ -103,7 +103,7 @@
                         <Value>false</Value>
                         <RefSemantic CorrespondingAttributePath="AAS:SubmodelElementCollection/allowDuplicates"/>
                     </Attribute>
-                    <InternalElement ID="19ad863f-6636-470b-bc9f-d4e1fd4a2fca" Name="retrieveSettings">
+                    <InternalElement ID="5d47c1f4-340b-48ba-88ea-af7911b17dc5" Name="retrieveSettings">
                         <Attribute Name="idShort">
                             <Value>retrieveSettings</Value>
                             <RefSemantic CorrespondingAttributePath="AAS:Referable/idShort"/>
@@ -121,7 +121,7 @@
                         </Attribute>
                         <RoleRequirements RefBaseRoleClassPath="AssetAdministrationShellRoleClassLib/Property"/>
                     </InternalElement>
-                    <InternalElement ID="e0d5f850-cbaa-4465-89fc-ba30479eb458" Name="connectMALT">
+                    <InternalElement ID="56a2d622-13d1-4a70-a7e1-cbb0c14ca14e" Name="connectMALT">
                         <Attribute Name="idShort">
                             <Value>connectMALT</Value>
                             <RefSemantic CorrespondingAttributePath="AAS:Referable/idShort"/>
@@ -146,7 +146,7 @@
                     </InternalElement>
                     <RoleRequirements RefBaseRoleClassPath="AssetAdministrationShellRoleClassLib/SubmodelElementCollection"/>
                 </InternalElement>
-                <InternalElement ID="ff275799-49a4-4a6c-b38c-de82a92d0fbf" Name="BasicTest">
+                <InternalElement ID="b9b385a5-d58b-4c14-865e-179f7e38f32d" Name="BasicTest">
                     <Attribute Name="idShort">
                         <Value>BasicTest</Value>
                         <RefSemantic CorrespondingAttributePath="AAS:Referable/idShort"/>
@@ -168,9 +168,33 @@
             </InternalElement>
         </InternalElement>
     </InstanceHierarchy>
+    <InterfaceClassLib Name="AssetAdministrationShellInterfaceClassLib">
+        <Description>Interface Class Library according to Details of the Asset Administration Shell V2.0.</Description>
+        <Version>1.0.0</Version>
+        <InterfaceClass RefBaseClassPath="AutomationMLBPRInterfaceClassLib/ExternalDataReference" Name="FileDataReference">
+            <Description>A FileDataReference represents the address to a File. FileDataReference is derived from the AutomationML Interface Class ExternalDataReference that is defined in AutomationML BPR_005E_ExternalDataReference_v1.0.0_2:The interface class “ExternalDataReference” shall be used in order to reference external documents out of the scope of AutomationML.</Description>
+            <Attribute AttributeDataType="" Name="">
+                <Description>A FileDataReference represents the address to a File. FileDataReference is derived from the AutomationML Interface Class ExternalDataReference that is defined in AutomationML BPR_005E_ExternalDataReference_v1.0.0_2:The interface class “ExternalDataReference” shall be used in order to reference external documents out of the scope of AutomationML.</Description>
+                <Value></Value>
+                <RefSemantic CorrespondingAttributePath=""/>
+            </Attribute>
+        </InterfaceClass>
+    </InterfaceClassLib>
+    <RoleClassLib Name="AssetAdministrationShellInterfaceClassLib">
+        <Description>Interface Class Library according to Details of the Asset Administration Shell V2.0.</Description>
+        <Version>1.0.0</Version>
+        <RoleClass RefBaseClassPath="AutomationMLBPRInterfaceClassLib/ExternalDataReference" Name="FileDataReference">
+            <Description>A FileDataReference represents the address to a File. FileDataReference is derived from the AutomationML Interface Class ExternalDataReference that is defined in AutomationML BPR_005E_ExternalDataReference_v1.0.0_2:The interface class “ExternalDataReference” shall be used in order to reference external documents out of the scope of AutomationML.</Description>
+            <Attribute AttributeDataType="" Name="">
+                <Description>A FileDataReference represents the address to a File. FileDataReference is derived from the AutomationML Interface Class ExternalDataReference that is defined in AutomationML BPR_005E_ExternalDataReference_v1.0.0_2:The interface class “ExternalDataReference” shall be used in order to reference external documents out of the scope of AutomationML.</Description>
+                <Value></Value>
+                <RefSemantic CorrespondingAttributePath=""/>
+            </Attribute>
+        </RoleClass>
+    </RoleClassLib>
     <SystemUnitClassLib Name="AssetAdministrationShellDataSpecificationTemplates">
         <Version>0</Version>
-        <SystemUnitClass RefBaseClassPath="AssetAdministrationShellRoleClassLib/DataSpecification" ID="21a477bf-7d87-4b52-ab2b-3acc62b64794" Name="DataSpecificationIEC61360Template">
+        <SystemUnitClass RefBaseClassPath="AssetAdministrationShellRoleClassLib/DataSpecification" ID="95f8544c-4f3a-4b41-a1c1-ce126a73c3e8" Name="DataSpecificationIEC61360Template">
             <Description>An AAS Data Specification template for IEC61369. A template consists of the DataSpecificationContent containing the additional attributes to be added to the element instance that references the data specification template and meta information about the template itself (this is why DataSpecification inherits from Identifiable). In UML these are two separated classes.</Description>
             <Attribute AttributeDataType="xs:string" Name="idShort">
                 <Description>Identifying string of the element within its name space. Constraint AASd-001: In case of a referable element not being an identifiable element this id is mandatory and used for referring to the element in its name space. Constraint AASd-002: idShort shall only feature letters, digits, underscore ("_"); starting mandatory with a letter. Constraint AASd-003: idShort shall be matched case-insensitive. Note: In case of an identifiable element idShort is optional but recommended to be defined. It can be used for unique reference in its name space and thus allows better usability and a more performant implementation. In this case it is similar to the “BrowserPath” in OPC UA.</Description>
@@ -221,6 +245,58 @@
                 </Attribute>
             </Attribute>
             <SupportedRoleClass RefRoleClassPath="AssetAdministrationShellRoleClassLib/DataSpecification"/>
+        </SystemUnitClass>
+        <SystemUnitClass RefBaseClassPath="AssetAdministrationShellRoleClassLib/DataSpecificationContent" ID="cd546a8c-7c80-48e3-be00-47db6a2ae9f0" Name="DataSpecificationIEC61360">
+            <Description>The content of an AAS Data Specification template for IEC61360.</Description>
+            <Attribute AttributeDataType="xs:string" Name="preferredName">
+                <Description>Identifies the attribute hierarchy for preferredName in above attribute hierachy. Subordinate attributes are designated by the country code information (see aml-lang literal).</Description>
+                <RefSemantic CorrespondingAttributePath="IEC:DataSpecificationIEC61360/preferredName"/>
+            </Attribute>
+            <Attribute AttributeDataType="xs:string" Name="shortName">
+                <Description>Identifies the attribute for shortName in above attribute hierarchy.</Description>
+                <RefSemantic CorrespondingAttributePath="IEC:DataSpecificationIEC61360/shortName"/>
+            </Attribute>
+            <Attribute AttributeDataType="xs:string" Name="unit">
+                <Description>Identifies the attribute for unit in above attribute hierarchy.</Description>
+                <RefSemantic CorrespondingAttributePath="IEC:DataSpecificationIEC61360/unit"/>
+            </Attribute>
+            <Attribute AttributeDataType="xs:string" Name="unitId">
+                <Description>Identifies the attribute for unitId in above attribute hierarchy in its string serialization.</Description>
+                <RefSemantic CorrespondingAttributePath="IEC:DataSpecificationIEC61360/unitId"/>
+            </Attribute>
+            <Attribute AttributeDataType="xs:string" Name="sourceOfDefinition">
+                <Description>Identifies the attribute for sourceOfDefinition in above attribute hierachy. Subordinate attributes are designated by the country code information (see aml-lang literal).</Description>
+                <RefSemantic CorrespondingAttributePath="IEC:DataSpecificationIEC61360/sourceOfDefinition"/>
+            </Attribute>
+            <Attribute AttributeDataType="xs:string" Name="symbol">
+                <Description>Identifies the attribute for symbol in above attribute hierarchy.</Description>
+                <RefSemantic CorrespondingAttributePath="IEC:DataSpecificationIEC61360/symbol"/>
+            </Attribute>
+            <Attribute AttributeDataType="xs:string" Name="dataType">
+                <Description>Identifies the attribute for dataType in above attribute hierarchy</Description>
+                <RefSemantic CorrespondingAttributePath="IEC:DataSpecificationIEC61360/dataType"/>
+            </Attribute>
+            <Attribute AttributeDataType="xs:string" Name="definition">
+                <Description>Identifies the attribute for definition in above attribute hierachy. Subordinate attributes are designated by the country code information (see aml-lang literal).</Description>
+                <RefSemantic CorrespondingAttributePath="IEC:DataSpecificationIEC61360/definition"/>
+            </Attribute>
+            <Attribute AttributeDataType="xs:string" Name="valueFormat">
+                <Description>Identifies the attribute for valueFormat in above attribute hierarchy.</Description>
+                <RefSemantic CorrespondingAttributePath="IEC:DataSpecificationIEC61360/valueFormat"/>
+            </Attribute>
+            <Attribute AttributeDataType="xs:string" Name="valueList">
+                <Description>Identifies the attribute for valueList in above attribute hierarchy.</Description>
+                <RefSemantic CorrespondingAttributePath="IEC:DataSpecificationIEC61360/valueList"/>
+            </Attribute>
+            <Attribute AttributeDataType="xs:string" Name="value">
+                <Description>The attribute value.</Description>
+                <RefSemantic CorrespondingAttributePath="IEC:DataSpecificationIEC61360/value"/>
+            </Attribute>
+            <Attribute AttributeDataType="xs:string" Name="valueId">
+                <Description>The id for the value.</Description>
+                <RefSemantic CorrespondingAttributePath="IEC:DataSpecificationIEC61360/valueId"/>
+            </Attribute>
+            <SupportedRoleClass RefRoleClassPath="AssetAdministrationShellRoleClassLib/DataSpecificationContent"/>
         </SystemUnitClass>
     </SystemUnitClassLib>
     <SystemUnitClassLib Name="AssetAdministrationShellSystemUnitClasses">

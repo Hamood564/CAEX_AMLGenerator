@@ -51,15 +51,15 @@ public class InterfaceClass {
 	}
 	
 	
-	public static SystemUnitFamilyType setSystemUnitFamily (String Name, String ClassPath, Description description, List<AttributeType> attributeTypes) {
-		SystemUnitFamilyType systemUnitFamily = new SystemUnitFamilyType();
-		systemUnitFamily.setName(Name);
-		systemUnitFamily.setRefBaseClassPath(ClassPath);
-		systemUnitFamily.setDescription(description);
+	public static InterfaceFamilyType setInterfaceFamily (String Name, String ClassPath, Description description, List<AttributeType> attributeTypes) {
+		InterfaceFamilyType interfaceFamily = new InterfaceFamilyType();
+		interfaceFamily.setName(Name);
+		interfaceFamily.setRefBaseClassPath(ClassPath);
+		interfaceFamily.setDescription(description);
 		if(attributeTypes != null) {
-			systemUnitFamily.getAttribute().addAll(attributeTypes);	
+			interfaceFamily.getAttribute().addAll(attributeTypes);	
 		}
-		return systemUnitFamily;
+		return interfaceFamily;
 		
 	}
 	
@@ -99,15 +99,15 @@ public class InterfaceClass {
 	}
 	
 	
-	public static List<SystemUnitFamilyType> setSystemUnitFamilyList (List<SystemUnitFamilyType> SystemUnitFamilyList, SystemUnitFamilyType SystemUnitFamily) {
-		SystemUnitFamilyList.add(SystemUnitFamily);
-		return SystemUnitFamilyList;
+	public static List<InterfaceFamilyType> setInterfaceFamilyList (List<InterfaceFamilyType> InterfaceFamilyList , InterfaceFamilyType InterfaceFamily) {
+		InterfaceFamilyList.add(InterfaceFamily);
+		return InterfaceFamilyList;
 		
 	}
 	
-	public static List<SystemUnitClassLib> setSystemClassLibList (List<SystemUnitClassLib> SystemUnitClassLibList, SystemUnitClassLib SystemUnitClassLib ){
-		SystemUnitClassLibList.add(SystemUnitClassLib);
-		return SystemUnitClassLibList;
+	public static List<InterfaceClassLib> setInterfaceClassLibList (List<InterfaceClassLib> InterfaceClassLibList, InterfaceClassLib InterfaceClassLib ){
+		InterfaceClassLibList.add(InterfaceClassLib);
+		return InterfaceClassLibList;
 		
 	}
 }

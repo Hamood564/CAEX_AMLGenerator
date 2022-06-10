@@ -6,14 +6,21 @@ import java.util.List;
 import Utilities.BasicObject;
 import Utilities.FileObject;
 import Utilities.InstanceHierarchyElements;
+import Utilities.InterfaceClass;
+import Utilities.RoleClass;
 import Utilities.SystemUnitClass;
 import de.dke.caex.AttributeType;
 import de.dke.caex.CAEXBasicObject;
 import de.dke.caex.CAEXBasicObject.Description;
 import de.dke.caex.CAEXFile;
+import de.dke.caex.InterfaceClassType;
+import de.dke.caex.InterfaceFamilyType;
 import de.dke.caex.CAEXFile.InstanceHierarchy;
+import de.dke.caex.CAEXFile.InterfaceClassLib;
+import de.dke.caex.CAEXFile.RoleClassLib;
 import de.dke.caex.CAEXFile.SystemUnitClassLib;
 import de.dke.caex.InternalElementType;
+import de.dke.caex.RoleFamilyType;
 import de.dke.caex.SystemUnitFamilyType;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
@@ -167,19 +174,44 @@ public class Initialise {
 		List<InstanceHierarchy> IHList = new LinkedList<>();
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
 		IHList = InstanceHierarchyElements.setInstanceHierarchyList(IHList, IH1);
 		
 		
+		// role class Lib
+		
+		Description RCL1 = BasicObject.setComponentDescription("Interface Class Library according to Details of the Asset Administration Shell V2.0.");
+		Description RCL2 = BasicObject.setComponentDescription("A FileDataReference represents the address to a File. FileDataReference is derived from the AutomationML Interface Class ExternalDataReference that is defined in AutomationML BPR_005E_ExternalDataReference_v1.0.0_2:The interface class “ExternalDataReference” shall be used in order to reference external documents out of the scope of AutomationML.");
+		
+		AttributeType attrRC = RoleClass.setRoleClassAttribute("", "", "", RCL2, "");
+		List<AttributeType> RCLAttList = new LinkedList<>();
+		RCLAttList = RoleClass.setAttributeList(attrRC, null, null, null, null, null, null, null, null, null);
+		RoleFamilyType RoleClassFamily = RoleClass.setRoleFamily("FileDataReference", "AutomationMLBPRInterfaceClassLib/ExternalDataReference", RCL2, RCLAttList);
+		
+		List<RoleFamilyType> RoleClassFamilyList =  new LinkedList<>();
+		RoleClassFamilyList= RoleClass.setRoleFamilyList(RoleClassFamilyList, RoleClassFamily);
+		List<RoleClassLib>RoleClassLibraries= new LinkedList<>();
+		RoleClassLib RoleClassLib1 = RoleClass.settingRoleClasslib("AssetAdministrationShellInterfaceClassLib", null,RCL1 , "1.0.0", RoleClassFamilyList);
+		
+		RoleClassLibraries = RoleClass.setRoleClassLibList(RoleClassLibraries, RoleClassLib1);
 		
 		
+		
+		
+		// interfaceclassLib
+		Description IFL1 = BasicObject.setComponentDescription("Interface Class Library according to Details of the Asset Administration Shell V2.0.");
+		Description IFL2 = BasicObject.setComponentDescription("A FileDataReference represents the address to a File. FileDataReference is derived from the AutomationML Interface Class ExternalDataReference that is defined in AutomationML BPR_005E_ExternalDataReference_v1.0.0_2:The interface class “ExternalDataReference” shall be used in order to reference external documents out of the scope of AutomationML.");
+		
+		AttributeType attrIF = InterfaceClass.setInterfaceClassAttribute("", "", "", IFL2, "");
+		List<AttributeType> IFAttList = new LinkedList<>();
+		IFAttList = InterfaceClass.setAttributeList(attrIF, null, null, null, null, null, null, null, null, null);
+		InterfaceFamilyType InterfaceFamily = InterfaceClass.setInterfaceFamily("FileDataReference", "AutomationMLBPRInterfaceClassLib/ExternalDataReference", IFL2, IFAttList);
+		
+		List<InterfaceFamilyType> InterfaceClassFamilyList =  new LinkedList<>();
+		InterfaceClassFamilyList= InterfaceClass.setInterfaceFamilyList(InterfaceClassFamilyList, InterfaceFamily);
+		List<InterfaceClassLib>interfaceClassLibraries= new LinkedList<>();
+		InterfaceClassLib interfaceClassLib1 = InterfaceClass.setInterfaceClassLib("AssetAdministrationShellInterfaceClassLib", null,IFL1 , "1.0.0", InterfaceClassFamilyList);
+		
+		interfaceClassLibraries = InterfaceClass.setInterfaceClassLibList(interfaceClassLibraries, interfaceClassLib1);
 		
 		
 		
@@ -214,34 +246,54 @@ public class Initialise {
         SUF1Attr_5 = InstanceHierarchyElements.linkAttribute(SUF1Attr_5, SUF1Attr_5a);
         SUF1Attr_5 = InstanceHierarchyElements.linkAttribute(SUF1Attr_5, SUF1Attr_5b);
 		
-        Description SUF2Attr_0= BasicObject.setComponentDescription("The content of an AAS Data Specification template for IEC61360.");
-        Description SUF2Attr_1= BasicObject.setComponentDescription("Identifies the attribute hierarchy for preferredName in above attribute hierachy. Subordinate attributes are designated by the country code information (see aml-lang literal).");
-        Description SUF2Attr_2= BasicObject.setComponentDescription("Identifies the attribute for shortName in above attribute hierarchy.");
-        Description SUF2Attr_3 = BasicObject.setComponentDescription("Identifies the attribute for unit in above attribute hierarchy.");
-        Description SUF2Attr_4 = BasicObject.setComponentDescription("Identifies the attribute for unitId in above attribute hierarchy in its string serialization.");
-        Description SUF2Attr_5 = BasicObject.setComponentDescription("Identifies the attribute for sourceOfDefinition in above attribute hierachy. Subordinate attributes are designated by the country code information (see aml-lang literal).");
-        Description SUF2Attr_6 = BasicObject.setComponentDescription("Identifies the attribute for symbol in above attribute hierarchy.");
-        Description SUF2Attr_7 =  BasicObject.setComponentDescription("Identifies the attribute for dataType in above attribute hierarchy");
-        Description SUF2Attr_8 =  BasicObject.setComponentDescription("Identifies the attribute for definition in above attribute hierachy. Subordinate attributes are designated by the country code information (see aml-lang literal).");
-        Description SUF2Attr_9 =  BasicObject.setComponentDescription("Identifies the attribute for valueFormat in above attribute hierarchy.");
-        Description SUF2Attr_10 =  BasicObject.setComponentDescription("Identifies the attribute for valueList in above attribute hierarchy.");
-        Description SUF2Attr_11 =  BasicObject.setComponentDescription("The attribute value.");
-        Description SUF2Attr_12 =  BasicObject.setComponentDescription("The id for the value.");
+        Description descSUF2Attr_0= BasicObject.setComponentDescription("The content of an AAS Data Specification template for IEC61360.");
+        Description descSUF2Attr_1= BasicObject.setComponentDescription("Identifies the attribute hierarchy for preferredName in above attribute hierachy. Subordinate attributes are designated by the country code information (see aml-lang literal).");
+        Description descSUF2Attr_2= BasicObject.setComponentDescription("Identifies the attribute for shortName in above attribute hierarchy.");
+        Description descSUF2Attr_3 = BasicObject.setComponentDescription("Identifies the attribute for unit in above attribute hierarchy.");
+        Description descSUF2Attr_4 = BasicObject.setComponentDescription("Identifies the attribute for unitId in above attribute hierarchy in its string serialization.");
+        Description descSUF2Attr_5 = BasicObject.setComponentDescription("Identifies the attribute for sourceOfDefinition in above attribute hierachy. Subordinate attributes are designated by the country code information (see aml-lang literal).");
+        Description descSUF2Attr_6 = BasicObject.setComponentDescription("Identifies the attribute for symbol in above attribute hierarchy.");
+        Description descSUF2Attr_7 =  BasicObject.setComponentDescription("Identifies the attribute for dataType in above attribute hierarchy");
+        Description descSUF2Attr_8 =  BasicObject.setComponentDescription("Identifies the attribute for definition in above attribute hierachy. Subordinate attributes are designated by the country code information (see aml-lang literal).");
+        Description descSUF2Attr_9 =  BasicObject.setComponentDescription("Identifies the attribute for valueFormat in above attribute hierarchy.");
+        Description descSUF2Attr_10 =  BasicObject.setComponentDescription("Identifies the attribute for valueList in above attribute hierarchy.");
+        Description descSUF2Attr_11 =  BasicObject.setComponentDescription("The attribute value.");
+        Description descSUF2Attr_12 =  BasicObject.setComponentDescription("The id for the value.");
         
+        AttributeType SUF2Attr_1 = SystemUnitClass.setSystemUnitAttribute("preferredName", "xs:string", null, descSUF2Attr_1, "IEC:DataSpecificationIEC61360/preferredName");
+        AttributeType SUF2Attr_2 = SystemUnitClass.setSystemUnitAttribute("shortName", "xs:string", null, descSUF2Attr_2, "IEC:DataSpecificationIEC61360/shortName");
+        AttributeType SUF2Attr_3 = SystemUnitClass.setSystemUnitAttribute("unit", "xs:string", null, descSUF2Attr_3, "IEC:DataSpecificationIEC61360/unit");
+        AttributeType SUF2Attr_4 = SystemUnitClass.setSystemUnitAttribute("unitId", "xs:string", null, descSUF2Attr_4, "IEC:DataSpecificationIEC61360/unitId");
+        AttributeType SUF2Attr_5 = SystemUnitClass.setSystemUnitAttribute("sourceOfDefinition", "xs:string", null, descSUF2Attr_5, "IEC:DataSpecificationIEC61360/sourceOfDefinition");
+        AttributeType SUF2Attr_6 = SystemUnitClass.setSystemUnitAttribute("symbol", "xs:string", null, descSUF2Attr_6, "IEC:DataSpecificationIEC61360/symbol");
+        AttributeType SUF2Attr_7 = SystemUnitClass.setSystemUnitAttribute("dataType", "xs:string", null, descSUF2Attr_7, "IEC:DataSpecificationIEC61360/dataType");
+        AttributeType SUF2Attr_8 = SystemUnitClass.setSystemUnitAttribute("definition", "xs:string", null, descSUF2Attr_8, "IEC:DataSpecificationIEC61360/definition");
+        AttributeType SUF2Attr_9 = SystemUnitClass.setSystemUnitAttribute("valueFormat", "xs:string", null, descSUF2Attr_9, "IEC:DataSpecificationIEC61360/valueFormat");
+        AttributeType SUF2Attr_10 = SystemUnitClass.setSystemUnitAttribute("valueList", "xs:string", null, descSUF2Attr_10, "IEC:DataSpecificationIEC61360/valueList");
+        AttributeType SUF2Attr_11 = SystemUnitClass.setSystemUnitAttribute("value", "xs:string", null, descSUF2Attr_11, "IEC:DataSpecificationIEC61360/value");
+        AttributeType SUF2Attr_12 = SystemUnitClass.setSystemUnitAttribute("valueId", "xs:string", null, descSUF2Attr_12, "IEC:DataSpecificationIEC61360/valueId");
+        		
         
         
 		SystemUnitClassLib systemClass1 = SystemUnitClass.settingSystemUnitClassLib("AssetAdministrationShellSystemUnitClasses", null, null, "0", null);
 		
 		List<AttributeType> SUFAttList = new LinkedList<>();
+		List<AttributeType> SUF2AttList = new LinkedList<>();
 		List<SystemUnitClassLib> SUCList = new LinkedList<>();
 		List<SystemUnitFamilyType> SUFList = new LinkedList<>();
+		List<SystemUnitFamilyType> SUFList2 = new LinkedList<>();
 		
 		SUFAttList = SystemUnitClass.setAttributeList(SUF1Attr_1, SUF1Attr_2, SUF1Attr_3, SUF1Attr_4, SUF1Attr_5, null, null, null, null, null);
+		SUF2AttList = SystemUnitClass.setAttributeList(SUF2Attr_1, SUF2Attr_2, SUF2Attr_3, SUF2Attr_4, SUF2Attr_5, SUF2Attr_6, SUF2Attr_7, SUF2Attr_8, SUF2Attr_9, SUF2Attr_10);
+		SUF2AttList.add(SUF2Attr_11);
+		SUF2AttList.add(SUF2Attr_12);
+		
 		SystemUnitFamilyType systemUniitFamily1 = SystemUnitClass.setSystemUnitFamily("DataSpecificationIEC61360Template", "AssetAdministrationShellRoleClassLib/DataSpecification", descSysClass2, SUFAttList);
+		SystemUnitFamilyType systemUniitFamily2 = SystemUnitClass.setSystemUnitFamily("DataSpecificationIEC61360", "AssetAdministrationShellRoleClassLib/DataSpecificationContent", descSUF2Attr_0, SUF2AttList);
 		SUFList = SystemUnitClass.setSystemUnitFamilyList(SUFList, systemUniitFamily1);
-		
+		SUFList2 = SystemUnitClass.setSystemUnitFamilyList(SUFList2, systemUniitFamily2);
 		SystemUnitClassLib systemClass2 = SystemUnitClass.settingSystemUnitClassLib("AssetAdministrationShellDataSpecificationTemplates", null, null, "0", SUFList);
-		
+		systemClass2.getSystemUnitClass().addAll(SUFList2);
 		
 		SUCList = SystemUnitClass.setSystemUnitClassLibList(SUCList, systemClass2);
 		SUCList = SystemUnitClass.setSystemUnitClassLibList(SUCList, systemClass1);
@@ -249,12 +301,11 @@ public class Initialise {
 		
 		
 		CAEXBasicObject AddInfo = BasicObject.setAdditionalInfo("AutomationMLVersion:2.0");
-		FileObject.assignLibraries(fileObject, IHList, SUCList, null, null);
+		FileObject.assignLibraries(fileObject, IHList, SUCList,interfaceClassLibraries, RoleClassLibraries);
 		fileObject.getAdditionalInformation().add(AddInfo);
 		FileObject.writeFileObjectOutput(fileObject,context);
-		System.out.println("Test1.." + fileObject.getInstanceHierarchy().get(0).getName());
-		fileObject.getInstanceHierarchy().get(0).setName("Test2");
-		System.out.println("Test2.." + fileObject.getInstanceHierarchy().get(0).getName());
+		
+		
 		
 		FileObject.writeOutputtoFile(fileObject,context,"Output.xml");
 		
